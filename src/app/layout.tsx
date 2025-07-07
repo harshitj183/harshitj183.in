@@ -16,6 +16,35 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Harshit Jaiswal - Web Developer & Student",
   description: "Portfolio of Harshit Jaiswal - Web Developer, Programmer, and Computer Science Student passionate about creating exceptional web experiences",
+  keywords: ["Harshit Jaiswal", "Web Developer", "React", "Next.js", "TypeScript", "JavaScript", "Frontend Developer", "Full Stack Developer"],
+  authors: [{ name: "Harshit Jaiswal", url: "https://www.harshitj183.in" }],
+  creator: "Harshit Jaiswal",
+  metadataBase: new URL('https://www.harshitj183.in'),
+  openGraph: {
+    title: "Harshit Jaiswal - Web Developer & Student",
+    description: "Portfolio of Harshit Jaiswal - Web Developer, Programmer, and Computer Science Student passionate about creating exceptional web experiences",
+    url: "https://www.harshitj183.in",
+    siteName: "Harshit Jaiswal Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Harshit Jaiswal - Web Developer & Student",
+    description: "Portfolio of Harshit Jaiswal - Web Developer, Programmer, and Computer Science Student passionate about creating exceptional web experiences",
+    creator: "@harshitj183",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   other: {
     'google-adsense-account': 'ca-pub-9029687078071299',
   },
