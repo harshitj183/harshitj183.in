@@ -68,7 +68,6 @@ export default function Contact() {
                 href="https://linkedin.com/in/harshitj183" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                title="LinkedIn Profile"
                 className="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +78,6 @@ export default function Contact() {
                 href="https://github.com/harshitj183" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                title="GitHub Profile"
                 className="w-10 h-10 bg-gray-800 text-white rounded-lg flex items-center justify-center hover:bg-gray-900 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -90,7 +88,6 @@ export default function Contact() {
                 href="https://twitter.com/harshitj183" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                title="Twitter Profile"
                 className="w-10 h-10 bg-blue-400 text-white rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

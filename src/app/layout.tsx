@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import DesktopSidebar from "@/components/DesktopSidebar";
+import MobileNavigation from "@/components/MobileNavigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -66,7 +68,13 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {children}
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+          <DesktopSidebar />
+          <MobileNavigation />
+          <main className="flex-1 lg:ml-64 pt-20 lg:pt-0">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
