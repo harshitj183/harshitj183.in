@@ -35,12 +35,14 @@ export default function Home() {
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 max-w-3xl">
               I'm a passionate second-year Computer Science student at K.R. Mangalam University with hands-on experience in full-stack web development. 
               With over 24 completed freelance projects, I specialize in creating innovative web solutions using modern technologies like JavaScript, 
-              React, PHP, MySQL, and WordPress. Currently working as a WordPress Developer Intern at SenpaiHost and AI Intern at CodeAlpha.
+              React, PHP, MySQL, and WordPress. Currently working as a WordPress Developer Intern at SenpaiHost and completed AI Internship at CodeAlpha.
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
+              Recently published research on "Innovative Systems and Ethical Data Practices to Increase Organ Donations" in IJSREM journal. 
               Known as @harshitj183 across all platforms, I dream of becoming a successful freelancer while contributing to prestigious 
-              organizations like DRDO and ISRO. I'm passionate about continuous learning, prompt engineering with ChatGPT, and building 
-              browser extensions that enhance productivity. My journey started in 11th grade with blogging, and I've been growing ever since!
+              organizations like DRDO and ISRO. I'm passionate about continuous learning, AI/ML, prompt engineering with ChatGPT, and building 
+              browser extensions. My journey started in 11th grade with blogging, and I've been growing ever since with achievements including 
+              a 50-day LeetCode streak and recent participation in KRMU 4.0 hackathon!
             </p>
           </div>
 
@@ -59,8 +61,8 @@ export default function Home() {
               <div className="text-sm text-gray-600 dark:text-gray-400">LeetCode Days</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">2</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Active Internships</div>
+              <div className="text-3xl font-bold text-red-600 dark:text-red-400">1</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Published Research</div>
             </div>
           </div>
         </div>
@@ -76,6 +78,15 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
+              {
+                title: "Printing Service AI Web App",
+                description: "Latest hackathon project from KRMU 4.0 - AI-powered printing service web app with intelligent code editor integration. Modern solution for document processing and printing.",
+                technologies: ["AI", "JavaScript", "Web App", "Code Editor"],
+                status: "Recent",
+                image: "🖨️",
+                github: "https://github.com/harshitj183/printing-service-ai",
+                live: "https://printing-ai.harshitj183.in"
+              },
               {
                 title: "Food Waste Donation Web App",
                 description: "Full-stack system connecting hotels with NGOs and farmers to donate excess food. Built with PHP, MySQL, and Google Maps API. Reduced local food waste by 35% in test rollout.",
@@ -120,6 +131,7 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <span className={`text-xs px-2 py-1 rounded ${
                     project.status === 'Completed' ? 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400' :
+                    project.status === 'Recent' ? 'bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400' :
                     'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400'
                   }`}>
                     {project.status}
@@ -151,6 +163,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Research & Publications Section */}
+      <section className="mb-16">
+        <div className="max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">Research & Publications</h2>
+          
+          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+            <div className="flex items-start gap-4">
+              <div className="text-4xl">📄</div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Innovative Systems and Ethical Data Practices to Increase Organ Donations
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-3">
+                  International Journal of Scientific Research in Engineering and Management (IJSREM) - Volume 08, Issue 10, October 2024
+                </p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  This research explores how Artificial Intelligence (AI), Blockchain technology, and Big Data Analytics can 
+                  optimize donor-recipient matching while maintaining transparency and ethical standards in organ donation systems.
+                </p>
+                <div className="flex items-center gap-4 text-sm">
+                  <span className="flex items-center gap-1">
+                    <span className="text-blue-600 dark:text-blue-400">Co-authors:</span>
+                    <span className="text-gray-600 dark:text-gray-400">Dr. Preeti Rathi, Ms. Sneha, Mr. Ashish Yadav, Mr. Kundan, Mr. Harsh Deo</span>
+                  </span>
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <span className="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-xs rounded-full">
+                    Published
+                  </span>
+                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs rounded-full">
+                    AI in Healthcare
+                  </span>
+                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 text-xs rounded-full">
+                    Blockchain
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Skills & Technologies Section */}
       <section className="mb-16">
         <div className="max-w-6xl">
@@ -160,12 +214,12 @@ export default function Home() {
             {[
               { name: "JavaScript", icon: "⚡", color: "bg-yellow-100 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400", level: "Expert" },
               { name: "React", icon: "⚛️", color: "bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400", level: "Advanced" },
-              { name: "Node.js", icon: "🟢", color: "bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400", level: "Advanced" },
-              { name: "TypeScript", icon: "📘", color: "bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400", level: "Intermediate" },
-              { name: "Next.js", icon: "▲", color: "bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400", level: "Advanced" },
-              { name: "MongoDB", icon: "🍃", color: "bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400", level: "Intermediate" },
+              { name: "PHP", icon: "�", color: "bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400", level: "Advanced" },
+              { name: "MySQL", icon: "�️", color: "bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400", level: "Advanced" },
               { name: "WordPress", icon: "🔧", color: "bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400", level: "Expert" },
-              { name: "Git", icon: "📝", color: "bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400", level: "Advanced" }
+              { name: "Python", icon: "🐍", color: "bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400", level: "Intermediate" },
+              { name: "C++", icon: "�", color: "bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400", level: "Intermediate" },
+              { name: "AI/ML", icon: "🤖", color: "bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400", level: "Learning" }
             ].map((tech, index) => (
               <div key={index} className={`${tech.color} rounded-lg p-4 text-center hover:scale-105 transition-transform cursor-pointer`}>
                 <div className="text-3xl mb-2">{tech.icon}</div>

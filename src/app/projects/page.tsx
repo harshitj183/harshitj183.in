@@ -21,6 +21,21 @@ interface Project {
 // Project data - Real projects by Harshit Jaiswal
 const projects: Project[] = [
   {
+    id: 'printing-service-ai',
+    title: 'Printing Service AI Web App',
+    description: 'Latest hackathon project from KRMU 4.0 - AI-powered printing service web app with intelligent code editor integration. Modern solution for document processing and printing workflows.',
+    imageSrc: '/projects/printing-ai.jpg',
+    tags: [
+      { name: 'AI', bgClass: 'bg-purple-100 dark:bg-purple-900', textClass: 'text-purple-800 dark:text-purple-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'Web App', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
+      { name: 'Code Editor', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
+    ],
+    demoUrl: 'https://printing-ai.harshitj183.in',
+    githubUrl: 'https://github.com/harshitj183/printing-service-ai',
+    featured: true,
+  },
+  {
     id: 'food-waste-donation-app',
     title: 'Food Waste Donation Web App',
     description: 'A full-stack system connecting hotels with NGOs and farmers to donate excess food. Built with PHP, MySQL, and JavaScript, featuring Google Maps API integration and PWA capabilities. Reduced local food waste by 35% in test rollout.',

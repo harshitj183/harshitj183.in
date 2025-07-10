@@ -20,7 +20,7 @@ export default function DesktopSidebar() {
             />
           </div>
           <h3 className="font-semibold text-gray-900 dark:text-white">Harshit Jaiswal</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Web Developer | Student | @harshitj183</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Web Developer | Published Researcher | @harshitj183</p>
         </div>
 
         <Navigation />
