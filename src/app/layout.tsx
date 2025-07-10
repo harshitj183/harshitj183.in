@@ -16,15 +16,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Harshit Jaiswal - Web Developer & Student",
-  description: "Portfolio of Harshit Jaiswal - Web Developer, Programmer, and Computer Science Student passionate about creating exceptional web experiences",
-  keywords: ["Harshit Jaiswal", "Web Developer", "React", "Next.js", "TypeScript", "JavaScript", "Frontend Developer", "Full Stack Developer"],
+  title: "Harshit Jaiswal - Web Developer & Computer Science Student",
+  description: "Portfolio of Harshit Jaiswal (@harshitj183) - Freelance Web Developer with 24+ completed projects, WordPress & AI Intern, Computer Science Student at K.R. Mangalam University. Specializing in JavaScript, PHP, React, and innovative web solutions.",
+  keywords: ["Harshit Jaiswal", "harshitj183", "Web Developer", "Freelancer", "React", "PHP", "JavaScript", "WordPress", "AI", "Computer Science Student", "K.R. Mangalam University", "SenpaiHost", "CodeAlpha"],
   authors: [{ name: "Harshit Jaiswal", url: "https://www.harshitj183.in" }],
-  creator: "Harshit Jaiswal",
+  creator: "Harshit Jaiswal (@harshitj183)",
   metadataBase: new URL('https://www.harshitj183.in'),
   openGraph: {
-    title: "Harshit Jaiswal - Web Developer & Student",
-    description: "Portfolio of Harshit Jaiswal - Web Developer, Programmer, and Computer Science Student passionate about creating exceptional web experiences",
+    title: "Harshit Jaiswal - Web Developer & Computer Science Student",
+    description: "Portfolio of Harshit Jaiswal (@harshitj183) - Freelance Web Developer with 24+ completed projects, WordPress & AI Intern, Computer Science Student passionate about creating innovative web solutions.",
     url: "https://www.harshitj183.in",
     siteName: "Harshit Jaiswal Portfolio",
     locale: "en_US",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Harshit Jaiswal - Web Developer & Student",
-    description: "Portfolio of Harshit Jaiswal - Web Developer, Programmer, and Computer Science Student passionate about creating exceptional web experiences",
+    title: "Harshit Jaiswal - Web Developer & Computer Science Student",
+    description: "Portfolio of Harshit Jaiswal (@harshitj183) - Freelance Web Developer with 24+ completed projects, WordPress & AI Intern, Computer Science Student passionate about creating innovative web solutions.",
     creator: "@harshitj183",
   },
   robots: {

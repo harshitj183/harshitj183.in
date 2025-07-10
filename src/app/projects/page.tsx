@@ -18,86 +18,113 @@ interface Project {
   featured?: boolean;
 }
 
-// Project data
+// Project data - Real projects by Harshit Jaiswal
 const projects: Project[] = [
   {
-    id: 'portfolio-website',
-    title: 'Personal Portfolio Website',
-    description: 'A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features dark mode, responsive design, and optimized performance.',
-    imageSrc: '/projects/portfolio.jpg',
+    id: 'food-waste-donation-app',
+    title: 'Food Waste Donation Web App',
+    description: 'A full-stack system connecting hotels with NGOs and farmers to donate excess food. Built with PHP, MySQL, and JavaScript, featuring Google Maps API integration and PWA capabilities. Reduced local food waste by 35% in test rollout.',
+    imageSrc: '/projects/food-waste-app.jpg',
     tags: [
-      { name: 'Next.js', bgClass: 'bg-purple-100 dark:bg-purple-900', textClass: 'text-purple-800 dark:text-purple-100' },
-      { name: 'Tailwind CSS', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
-      { name: 'TypeScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'PHP', bgClass: 'bg-purple-100 dark:bg-purple-900', textClass: 'text-purple-800 dark:text-purple-100' },
+      { name: 'MySQL', bgClass: 'bg-orange-100 dark:bg-orange-900', textClass: 'text-orange-800 dark:text-orange-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'PWA', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
     ],
-    demoUrl: 'https://harshitj183.in',
-    githubUrl: 'https://github.com/harshitj183/harshitj183.in',
+    demoUrl: 'https://food-donation.harshitj183.in',
+    githubUrl: 'https://github.com/harshitj183/food-waste-donation',
     featured: true,
   },
   {
-    id: 'e-commerce-platform',
-    title: 'E-Commerce Platform',
-    description: 'A fully-featured e-commerce platform with product listings, cart functionality, user authentication, and payment processing integration.',
-    imageSrc: '/projects/ecommerce.jpg',
+    id: 'tic-tac-toe-game',
+    title: 'Interactive Tic-Tac-Toe Game',
+    description: 'A modern web-based Tic-Tac-Toe game with Google UI/UX design, smooth animations, vibration feedback, score tracking, and alternate starting player feature for fairness.',
+    imageSrc: '/projects/tic-tac-toe.jpg',
     tags: [
-      { name: 'React', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
-      { name: 'Node.js', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
-      { name: 'MongoDB', bgClass: 'bg-gray-100 dark:bg-gray-700', textClass: 'text-gray-800 dark:text-gray-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'HTML5', bgClass: 'bg-red-100 dark:bg-red-900', textClass: 'text-red-800 dark:text-red-100' },
+      { name: 'CSS3', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
+      { name: 'Google UI', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
     ],
-    demoUrl: 'https://ecommerce-demo.harshitj183.in',
-    githubUrl: 'https://github.com/harshitj183/ecommerce-platform',
+    demoUrl: 'https://harshitj183.github.io/tic-tac-toe',
+    githubUrl: 'https://github.com/harshitj183/tic-tac-toe',
   },
   {
-    id: 'task-management-app',
-    title: 'Task Management Application',
-    description: 'A productivity app for managing tasks and projects with features like drag-and-drop organization, due dates, priorities, and team collaboration.',
-    imageSrc: '/projects/task-app.jpg',
+    id: 'krmu-search-engine',
+    title: 'KRMU Search Engine',
+    description: 'A custom-built search engine specifically designed for KR Mangalam University. Provides seamless search functionality for students and faculty to find academic resources and campus information.',
+    imageSrc: '/projects/krmu-search.jpg',
     tags: [
-      { name: 'Angular', bgClass: 'bg-red-100 dark:bg-red-900', textClass: 'text-red-800 dark:text-red-100' },
-      { name: 'Firebase', bgClass: 'bg-orange-100 dark:bg-orange-900', textClass: 'text-orange-800 dark:text-orange-100' },
-      { name: 'SCSS', bgClass: 'bg-pink-100 dark:bg-pink-900', textClass: 'text-pink-800 dark:text-pink-100' },
-    ],
-    demoUrl: 'https://task-app.harshitj183.in',
-    githubUrl: 'https://github.com/harshitj183/task-management',
-  },
-  {
-    id: 'weather-forecast',
-    title: 'Weather Forecast App',
-    description: 'A real-time weather application that provides current conditions and forecasts based on location. Features include interactive maps and historical data.',
-    imageSrc: '/projects/weather.jpg',
-    tags: [
-      { name: 'React', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'HTML', bgClass: 'bg-red-100 dark:bg-red-900', textClass: 'text-red-800 dark:text-red-100' },
+      { name: 'CSS', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
       { name: 'API Integration', bgClass: 'bg-indigo-100 dark:bg-indigo-900', textClass: 'text-indigo-800 dark:text-indigo-100' },
-      { name: 'Chart.js', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
     ],
-    demoUrl: 'https://weather.harshitj183.in',
-    githubUrl: 'https://github.com/harshitj183/weather-app',
+    githubUrl: 'https://github.com/harshitj183/krmu-search-engine',
   },
   {
-    id: 'blog-platform',
-    title: 'Content Management System',
-    description: 'A modern blogging platform with a rich text editor, content management, and SEO optimization features. Supports multiple authors and content types.',
-    imageSrc: '/projects/blog.jpg',
+    id: 'translation-tool',
+    title: 'Translation Tool',
+    description: 'A web-based translation tool with Google Translate API integration, featuring light/dark mode options and auto language detection for seamless multilingual communication.',
+    imageSrc: '/projects/translation-tool.jpg',
     tags: [
-      { name: 'Next.js', bgClass: 'bg-purple-100 dark:bg-purple-900', textClass: 'text-purple-800 dark:text-purple-100' },
-      { name: 'PostgreSQL', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
-      { name: 'Prisma', bgClass: 'bg-teal-100 dark:bg-teal-900', textClass: 'text-teal-800 dark:text-teal-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'Google API', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
+      { name: 'CSS3', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
     ],
-    demoUrl: 'https://blog.harshitj183.in',
-    githubUrl: 'https://github.com/harshitj183/blog-platform',
+    demoUrl: 'https://harshitj183.github.io/translation-tool',
+    githubUrl: 'https://github.com/harshitj183/translation-tool',
   },
   {
-    id: 'fitness-tracker',
-    title: 'Fitness Tracking Application',
-    description: 'A mobile-first web app for tracking workouts, nutrition, and fitness goals. Features include progress visualization and custom workout plans.',
-    imageSrc: '/projects/fitness.jpg',
+    id: 'object-detection-system',
+    title: 'Web-based Object Detection System',
+    description: 'An AI-powered object detection system using TensorFlow.js and COCO-SSD model for real-time object detection and tracking directly in the browser. Built during CodeAlpha internship.',
+    imageSrc: '/projects/object-detection.jpg',
     tags: [
-      { name: 'React Native', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
-      { name: 'GraphQL', bgClass: 'bg-pink-100 dark:bg-pink-900', textClass: 'text-pink-800 dark:text-pink-100' },
-      { name: 'Firebase', bgClass: 'bg-orange-100 dark:bg-orange-900', textClass: 'text-orange-800 dark:text-orange-100' },
+      { name: 'TensorFlow.js', bgClass: 'bg-orange-100 dark:bg-orange-900', textClass: 'text-orange-800 dark:text-orange-100' },
+      { name: 'AI/ML', bgClass: 'bg-purple-100 dark:bg-purple-900', textClass: 'text-purple-800 dark:text-purple-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'Computer Vision', bgClass: 'bg-pink-100 dark:bg-pink-900', textClass: 'text-pink-800 dark:text-pink-100' },
     ],
-    demoUrl: 'https://fitness.harshitj183.in',
-    githubUrl: 'https://github.com/harshitj183/fitness-tracker',
+    demoUrl: 'https://harshitj183.github.io/object-detection',
+    githubUrl: 'https://github.com/harshitj183/object-detection',
+  },
+  {
+    id: 'multi-search-extension',
+    title: 'MultiSearch Browser Extension',
+    description: 'A browser extension that enables simultaneous searching across multiple search engines with speed and convenience. Enhances productivity by providing swift results from preferred platforms.',
+    imageSrc: '/projects/multi-search.jpg',
+    tags: [
+      { name: 'Browser Extension', bgClass: 'bg-indigo-100 dark:bg-indigo-900', textClass: 'text-indigo-800 dark:text-indigo-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'Chrome API', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
+    ],
+    githubUrl: 'https://github.com/harshitj183/multi-search-extension',
+  },
+  {
+    id: 'video-speed-controller',
+    title: 'Video Speed Controller Extension',
+    description: 'A browser extension to control video playback speed without affecting audio quality. Features easy speed adjustment settings while maintaining pitch clarity for clear dialogue and music.',
+    imageSrc: '/projects/video-controller.jpg',
+    tags: [
+      { name: 'Browser Extension', bgClass: 'bg-indigo-100 dark:bg-indigo-900', textClass: 'text-indigo-800 dark:text-indigo-100' },
+      { name: 'JavaScript', bgClass: 'bg-yellow-100 dark:bg-yellow-900', textClass: 'text-yellow-800 dark:text-yellow-100' },
+      { name: 'Media API', bgClass: 'bg-red-100 dark:bg-red-900', textClass: 'text-red-800 dark:text-red-100' },
+    ],
+    githubUrl: 'https://github.com/harshitj183/video-speed-controller',
+  },
+  {
+    id: 'printing-service-app',
+    title: 'Printing Service Web App (KRMU Hackathon 4.0)',
+    description: 'An innovative printing service web application with AI code editor integration, developed for KRMU 4.0 Hackathon. Features modern UI/UX and intelligent code assistance capabilities.',
+    imageSrc: '/projects/printing-service.jpg',
+    tags: [
+      { name: 'AI Integration', bgClass: 'bg-purple-100 dark:bg-purple-900', textClass: 'text-purple-800 dark:text-purple-100' },
+      { name: 'React', bgClass: 'bg-blue-100 dark:bg-blue-900', textClass: 'text-blue-800 dark:text-blue-100' },
+      { name: 'Code Editor', bgClass: 'bg-gray-100 dark:bg-gray-700', textClass: 'text-gray-800 dark:text-gray-100' },
+      { name: 'Hackathon', bgClass: 'bg-green-100 dark:bg-green-900', textClass: 'text-green-800 dark:text-green-100' },
+    ],
+    githubUrl: 'https://github.com/harshitj183/printing-service-app',
   },
 ];
 
@@ -110,7 +137,7 @@ export default function Projects() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-2">My Projects</h1>
       <p className="text-gray-600 dark:text-gray-400 mb-8">
-        A selection of my recent work and personal projects
+        A showcase of 24+ freelance projects, hackathon winners, and innovative solutions in web development, AI/ML, and browser extensions
       </p>
       
       {/* Featured Projects */}
@@ -245,16 +272,25 @@ export default function Projects() {
       
       {/* Contact CTA */}
       <section className="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg text-center">
-        <h2 className="text-2xl font-bold mb-4">Interested in working together?</h2>
+        <h2 className="text-2xl font-bold mb-4">Ready for your next project?</h2>
         <p className="mb-6 max-w-2xl mx-auto">
-          I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+          With 24+ completed freelance projects and experience in full-stack development, AI/ML, and browser extensions, 
+          I'm ready to bring your ideas to life. Let's build something amazing together!
         </p>
-        <Link 
-          href="/contact" 
-          className="inline-block bg-white text-blue-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
-        >
-          Get in Touch
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link 
+            href="/contact" 
+            className="inline-block bg-white text-blue-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
+          >
+            Get in Touch
+          </Link>
+          <Link 
+            href="mailto:harshitj183@hotmail.com"
+            className="inline-block border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-blue-700 transition-colors"
+          >
+            Email Me
+          </Link>
+        </div>
       </section>
     </div>
   );

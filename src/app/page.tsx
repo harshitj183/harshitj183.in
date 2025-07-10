@@ -30,17 +30,17 @@ export default function Home() {
 
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Full-Stack Web Developer & Computer Science Student
+              Web Developer | Programmer | Lifelong Learner | Author | Student
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 max-w-3xl">
-              I'm a passionate web developer with expertise in modern technologies like React, Next.js, Node.js, and WordPress. 
-              With over 24 completed projects and hands-on experience as a WordPress Developer Intern at SenpaiHost LLP, 
-              I specialize in creating scalable, user-friendly web applications that deliver exceptional digital experiences.
+              I'm a passionate second-year Computer Science student at K.R. Mangalam University with hands-on experience in full-stack web development. 
+              With over 24 completed freelance projects, I specialize in creating innovative web solutions using modern technologies like JavaScript, 
+              React, PHP, MySQL, and WordPress. Currently working as a WordPress Developer Intern at SenpaiHost and AI Intern at CodeAlpha.
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
-              Currently pursuing my Computer Science degree at K.R. Mangalam University, I combine academic knowledge 
-              with real-world experience to build innovative solutions. I'm always eager to take on new challenges 
-              and collaborate on exciting projects.
+              Known as @harshitj183 across all platforms, I dream of becoming a successful freelancer while contributing to prestigious 
+              organizations like DRDO and ISRO. I'm passionate about continuous learning, prompt engineering with ChatGPT, and building 
+              browser extensions that enhance productivity. My journey started in 11th grade with blogging, and I've been growing ever since!
             </p>
           </div>
 
@@ -48,19 +48,19 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">24+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Freelance Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400">2+</div>
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400">4+</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">15+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">50</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">LeetCode Days</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">100%</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</div>
+              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">2</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Active Internships</div>
             </div>
           </div>
         </div>
@@ -77,27 +77,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "E-Commerce Platform",
-                description: "Full-stack e-commerce solution with real-time inventory, secure payments, and admin dashboard built with React, Node.js, and MongoDB.",
-                technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+                title: "Food Waste Donation Web App",
+                description: "Full-stack system connecting hotels with NGOs and farmers to donate excess food. Built with PHP, MySQL, and Google Maps API. Reduced local food waste by 35% in test rollout.",
+                technologies: ["PHP", "MySQL", "JavaScript", "PWA"],
                 status: "Completed",
-                image: "🛒",
-                github: "https://github.com/harshitj183",
-                live: "https://ecommerce-demo.harshitj183.in"
+                image: "🍽️",
+                github: "https://github.com/harshitj183/food-waste-donation",
+                live: "https://food-donation.harshitj183.in"
               },
               {
-                title: "Real-Time Chat Application",
-                description: "Modern chat app with instant messaging, file sharing, video calls, and group conversations using Socket.io and WebRTC.",
-                technologies: ["Socket.io", "WebRTC", "Express", "React"],
-                status: "In Progress",
-                image: "💬",
-                github: "https://github.com/harshitj183",
-                live: null
+                title: "Web-based Object Detection System",
+                description: "AI-powered real-time object detection using TensorFlow.js and COCO-SSD model. Built during CodeAlpha internship with responsive Google-inspired UI.",
+                technologies: ["TensorFlow.js", "AI/ML", "JavaScript", "COCO-SSD"],
+                status: "Completed",
+                image: "�",
+                github: "https://github.com/harshitj183/object-detection",
+                live: "https://object-detection.harshitj183.in"
               },
               {
-                title: "Task Management System",
-                description: "Comprehensive project management tool with team collaboration, real-time updates, and progress tracking for enhanced productivity.",
-                technologies: ["Next.js", "PostgreSQL", "Prisma", "TypeScript"],
+                title: "Interactive Tic-Tac-Toe Game",
+                description: "Modern web game with Google UI/UX design, smooth animations, vibration feedback, score tracking, and alternate starting player feature.",
+                technologies: ["JavaScript", "HTML5", "CSS3", "Google UI"],
                 status: "Completed",
                 image: "📋",
                 github: "https://github.com/harshitj183",
