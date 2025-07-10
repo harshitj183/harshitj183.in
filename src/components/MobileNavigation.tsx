@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Navigation from "./Navigation";
+import Image from "next/image";
 
 export default function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,8 +36,14 @@ export default function MobileNavigation() {
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">HJ</span>
+              <div className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-blue-500/20">
+                <Image
+                  src="/profile.jpg"
+                  alt="Harshit Jaiswal"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="font-semibold text-gray-900 dark:text-white">Harshit Jaiswal</span>
             </div>
@@ -69,8 +76,14 @@ export default function MobileNavigation() {
             <div className="pt-20">
               <div className="px-6 pb-6 border-b border-gray-200 dark:border-gray-700">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">HJ</span>
+                  <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-blue-500/20">
+                    <Image
+                      src="/profile.jpg"
+                      alt="Harshit Jaiswal"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white">Harshit Jaiswal</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Web Developer | Student</p>

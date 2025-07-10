@@ -1,6 +1,7 @@
 'use client'
 
 import Navigation from "./Navigation";
+import Image from "next/image";
 
 export default function DesktopSidebar() {
   return (
@@ -8,8 +9,15 @@ export default function DesktopSidebar() {
       <div className="p-6">
         {/* Profile Section */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 mx-auto mb-4 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">HJ</span>
+          <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-blue-500/20">
+            <Image
+              src="/profile.jpg"
+              alt="Harshit Jaiswal"
+              width={64}
+              height={64}
+              className="w-full h-full object-cover"
+              priority
+            />
           </div>
           <h3 className="font-semibold text-gray-900 dark:text-white">Harshit Jaiswal</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">Web Developer | Student</p>
