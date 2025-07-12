@@ -6,7 +6,11 @@ const config = {
   // Configure image domains
   images: {
     domains: ['assets.leetcode.com', 'avatars.githubusercontent.com', 'github.com', 'leetcode.com'],
+    unoptimized: true,
   },
+
+  // Support static exports
+  output: 'export',
 
   // Webpack configuration for TypeScript and module resolution
   webpack: (config) => {
