@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:static:no-lint",
+  "buildCommand": "node emergency-build.js",
   "installCommand": "npm ci",
   "outputDirectory": "out",
   "framework": "nextjs",

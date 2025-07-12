@@ -43,11 +43,9 @@ jobs:
           echo "Current directory: $(pwd)"
           echo "Directory content: $(ls -la)"
           
-          # Install cross-env explicitly
-          npm install cross-env --no-save
-          
-          # Build with ESLint disabled and set for export
-          NEXT_DISABLE_ESLINT=1 EXPORT_MODE=true npm run build
+          # Use the emergency build script that doesn't rely on cross-env
+          echo "Running emergency build script..."
+          node emergency-build.js
         env:
           NODE_OPTIONS: --max-old-space-size=4096
       - name: Upload artifact
