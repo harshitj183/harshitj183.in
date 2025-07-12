@@ -1,0 +1,10 @@
+Write-Host "Please follow these steps to push your changes to GitHub:"
+Write-Host "1. Go to GitHub: https://github.com/settings/tokens"
+Write-Host "2. Generate a new token with 'repo' permissions"
+Write-Host "3. Use this command (replace TOKEN with your token):"
+Write-Host "   git push https://TOKEN@github.com/harshitj183/harshitj183.in.git main"
+Write-Host ""
+Write-Host "Alternatively, you can use GitHub Desktop to push these changes."
+Write-Host ""
+Write-Host "The changes that need to be pushed are:"
+git status

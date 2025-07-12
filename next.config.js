@@ -9,8 +9,8 @@ const config = {
     unoptimized: true,
   },
 
-  // Support static exports
-  output: 'export',
+  // Support static exports only when EXPORT_MODE is set
+  output: process.env.EXPORT_MODE ? 'export' : undefined,
 
   // Webpack configuration for TypeScript and module resolution
   webpack: (config) => {

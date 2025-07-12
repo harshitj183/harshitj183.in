@@ -10,7 +10,12 @@ function setCrossEnvVars() {
   
   for (const arg of args) {
     if (arg.includes('=')) {
-      const [key, value] = arg.split('=');
+      // Handle quotes in values if present
+      const equalSignIndex = arg.indexOf('=');
+      const key = arg.substring(0, equalSignIndex);
+      const value = arg.substring(equalSignIndex + 1).replace(/^"|"$/g, '');
+      
+      console.log(`Setting env var: ${key}=${value}`);
       process.env[key] = value;
       envVarsSet = true;
     } else {
