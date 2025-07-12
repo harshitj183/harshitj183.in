@@ -158,7 +158,29 @@ GITHUB_TOKEN=your_github_personal_access_token
 - Skills and technology stack
 - About page content and achievements
 
-## 🚀 Deployment
+## � Analytics Integration
+
+The portfolio includes built-in support for analytics tools:
+
+### Microsoft Clarity
+- **Visual User Insights**: Heatmaps, session recordings, and user behavior analytics
+- **Privacy-Focused**: Configurable data collection with respect for user privacy
+- **Configuration**: Set your Clarity Project ID in `.env.local` and `.env.production`
+
+### Google AdSense
+- **Monetization Ready**: Support for ad placement if desired
+- **Environment Configuration**: AdSense Publisher ID managed through environment variables
+- **Dynamic Loading**: Only loads when properly configured
+
+### Setup Instructions
+1. Create `.env.local` (development) and `.env.production` (production) files
+2. Add your analytics IDs:
+```bash
+NEXT_PUBLIC_CLARITY_ID=your_clarity_project_id
+NEXT_PUBLIC_ADSENSE_ID=your_adsense_publisher_id
+```
+
+## �🚀 Deployment
 
 ### Build for Production
 ```bash

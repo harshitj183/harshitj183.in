@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import DesktopSidebar from "@/components/DesktopSidebar";
 import MobileNavigation from "@/components/MobileNavigation";
 import ClarityAnalytics from "@/components/ClarityAnalytics";
+import GoogleAdsense from "@/components/GoogleAdsense";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    'google-adsense-account': 'ca-pub-9029687078071299',
+    'google-adsense-account': process.env.NEXT_PUBLIC_ADSENSE_ID || '',
   },
 };
 
@@ -63,12 +63,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9029687078071299"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        {/* Google AdSense using environment variable */}
+        <GoogleAdsense />
         {/* Microsoft Clarity Analytics using environment variable */}
         <ClarityAnalytics />
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">

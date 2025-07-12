@@ -164,6 +164,30 @@ These errors often occur due to file locks on Windows or file permission issues:
    - Other terminal windows
    - Other development servers
 
+### Analytics Troubleshooting
+
+If you're having issues with Microsoft Clarity or Google AdSense:
+
+1. **Environment Variables**: 
+   - Check that the variables are properly set in `.env.local` and `.env.production`
+   - Verify the format of your IDs: 
+     - Clarity: typically a string like `sdeu9zdpft`
+     - AdSense: should start with `ca-pub-`
+
+2. **Script Loading**:
+   - Check browser console for script loading errors
+   - Verify no ad blockers or privacy extensions are blocking the scripts
+   - For Clarity: check Network tab in dev tools for requests to `clarity.ms`
+   - For AdSense: check for requests to `pagead2.googlesyndication.com`
+
+3. **Components Not Initializing**:
+   - Both `GoogleAdsense` and `ClarityAnalytics` components only load in production or when environment variables are set
+   - Try setting `NODE_ENV=production` to test them locally
+
+4. **Console Output**:
+   - Both components log initialization status to console
+   - Check for messages like "Google AdSense initialized with ID:" or "Microsoft Clarity initialized with ID:"
+
 4. **Use the run helper script** which handles cleaning automatically:
    ```bash
    # Windows
@@ -210,6 +234,10 @@ DEBUG_LEETCODE=true                         # Enable detailed logging
 # Build Configuration
 EXPORT_MODE=false
 USE_MOCK_DATA=false
+
+# Analytics
+NEXT_PUBLIC_CLARITY_ID=your_clarity_project_id
+NEXT_PUBLIC_ADSENSE_ID=your_adsense_publisher_id
 ```
 
 #### Troubleshooting LeetCode Integration
@@ -222,6 +250,21 @@ If your LeetCode profile data is not displaying correctly:
 4. **Check the Public API**: The site now uses https://leetcode-stats-api.herokuapp.com/USERNAME for better reliability
 5. **API fallbacks**: If the public API fails, it falls back to direct GraphQL API
 6. **Network issues**: Ensure there are no firewall or network restrictions blocking API calls
+
+#### Web Analytics Configuration
+
+The portfolio supports Microsoft Clarity and Google AdSense for analytics and monetization:
+
+1. **Microsoft Clarity**: 
+   - Get your Clarity Project ID from [clarity.microsoft.com](https://clarity.microsoft.com/)
+   - Add to `.env.local` as `NEXT_PUBLIC_CLARITY_ID`
+   - Will only be loaded in production or when ID is present
+
+2. **Google AdSense**:
+   - Get your AdSense Publisher ID from [adsense.google.com](https://adsense.google.com/)
+   - Add to `.env.local` as `NEXT_PUBLIC_ADSENSE_ID`
+   - Format: ca-pub-XXXXXXXXXXXXXXXX
+   - Will only be loaded in production or when ID is present
 
 You can test the LeetCode Stats API directly in your browser by visiting:
 ```
@@ -269,10 +312,16 @@ The unified dashboard includes:
 Before deploying to production, ensure the following are checked:
 
 1. **Environment Variables**: Verify all necessary variables are set in your production environment
+   - GitHub token
+   - LeetCode username
+   - Analytics IDs (Clarity and AdSense)
 2. **API Keys**: Ensure GitHub token has appropriate permissions
 3. **Error Handling**: Confirm fallback mechanisms work when APIs are unavailable
 4. **Performance**: Check that the combined timeline loads efficiently with larger datasets
 5. **Mobile Responsiveness**: Test the dashboard on various screen sizes
+6. **Analytics Setup**: Verify Clarity and AdSense are properly configured
+   - Check developer tools to confirm scripts are loading
+   - Verify in respective analytics dashboards
 
 ### Deployment Options
 

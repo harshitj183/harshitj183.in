@@ -29,6 +29,39 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Repository Social Previews
+
+This portfolio website now supports displaying GitHub repository social preview images in the repository cards. 
+
+### What are GitHub Social Preview Images?
+
+GitHub allows you to upload custom images for your repositories that appear when your repositories are shared on social media or in search results.
+
+### How to Set Up Social Previews
+
+1. Go to your repository on GitHub
+2. Click on "Settings"
+3. Scroll to the "Social preview" section
+4. Upload an image (recommended size: 1280×640px)
+
+For more information, see [SOCIAL_PREVIEW_GUIDE.md](./SOCIAL_PREVIEW_GUIDE.md)
+
+## Analytics Setup
+
+This project uses Microsoft Clarity and Google AdSense for analytics. To configure these services:
+
+1. Create a `.env.local` file (for development) and `.env.production` file (for production) with the following variables:
+
+```bash
+# Analytics
+NEXT_PUBLIC_CLARITY_ID=your_clarity_project_id
+NEXT_PUBLIC_ADSENSE_ID=your_adsense_publisher_id
+```
+
+2. Replace the placeholder values with your actual Microsoft Clarity project ID and Google AdSense publisher ID.
+
+The analytics components will only be loaded in production environments or when the environment variables are provided.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
