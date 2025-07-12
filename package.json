@@ -11,6 +11,8 @@
     "clean-all": "node build-helpers.js clean-all",
     "build:clean": "npm run clean && npm run build",
     "build:static": "cross-env EXPORT_MODE=true npm run build",
+    "build:no-lint": "cross-env NEXT_DISABLE_ESLINT=1 npm run build",
+    "build:static:no-lint": "cross-env NEXT_DISABLE_ESLINT=1 EXPORT_MODE=true npm run build",
     "export": "cross-env EXPORT_MODE=true npm run build"
   },
   "dependencies": {

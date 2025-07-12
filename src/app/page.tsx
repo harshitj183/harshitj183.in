@@ -41,10 +41,10 @@ export default function Home() {
               React, PHP, MySQL, and WordPress. Currently working as a WordPress Developer Intern at SenpaiHost and completed AI Internship at CodeAlpha.
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
-              Recently published research on "Innovative Systems and Ethical Data Practices to Increase Organ Donations" in IJSREM journal. 
+              Recently published research on &quot;Innovative Systems and Ethical Data Practices to Increase Organ Donations&quot; in IJSREM journal. 
               Known as @harshitj183 across all platforms, I dream of becoming a successful freelancer while contributing to prestigious 
-              organizations like DRDO and ISRO. I'm passionate about continuous learning, AI/ML, prompt engineering with ChatGPT, and building 
-              browser extensions. My journey started in 11th grade with blogging, and I've been growing ever since with achievements including 
+              organizations like DRDO and ISRO. I&apos;m passionate about continuous learning, AI/ML, prompt engineering with ChatGPT, and building 
+              browser extensions. My journey started in 11th grade with blogging, and I&apos;ve been growing ever since with achievements including 
               contributions to open source and recent participation in KRMU 4.0 hackathon!
             </p>
           </div>

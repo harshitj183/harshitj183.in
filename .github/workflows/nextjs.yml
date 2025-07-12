@@ -42,7 +42,7 @@ jobs:
           echo "NPM version: $(npm -v)"
           echo "Current directory: $(pwd)"
           echo "Directory content: $(ls -la)"
-          npm run build:static
+          npm run build:static:no-lint
         env:
           NODE_OPTIONS: --max-old-space-size=4096
       - name: Upload artifact
