@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "node build-helpers.js clean",
+    "clean-all": "node build-helpers.js clean-all",
+    "build:clean": "npm run clean && npm run build",
+    "build:static": "cross-env EXPORT_MODE=true npm run build",
+    "export": "cross-env EXPORT_MODE=true npm run build && next export"
   },
   "dependencies": {
     "next": "15.3.4",
@@ -19,9 +24,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "gh-pages": "^6.3.0",
+    "node-fetch": "^3.3.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

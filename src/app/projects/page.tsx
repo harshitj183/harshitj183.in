@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import GitHubRepos from '@/components/GitHubRepos';
 
 // Define project types for better organization
 interface Project {
@@ -286,6 +287,18 @@ export default function Projects() {
       </section>
       
       {/* Contact CTA */}
+      {/* Live GitHub Repositories */}
+      <section className="mt-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-2">
+          <span>🔗</span> Live GitHub Repositories
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">
+          Here are my latest repositories fetched in real-time from GitHub. This section automatically 
+          updates with new projects and contributions.
+        </p>
+        <GitHubRepos maxRepos={12} featured={true} />
+      </section>
+
       <section className="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg text-center">
         <h2 className="text-2xl font-bold mb-4">Ready for your next project?</h2>
         <p className="mb-6 max-w-2xl mx-auto">

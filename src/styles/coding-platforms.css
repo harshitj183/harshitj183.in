@@ -1,0 +1,124 @@
+/* Progress bar styles for LeetCode stats */
+[data-progress] {
+  position: relative;
+}
+
+[data-progress]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: currentColor;
+  border-radius: inherit;
+  transition: width 300ms ease-in-out;
+}
+
+/* Progress percentages */
+[data-progress="0"]::after { width: 0%; }
+[data-progress="1"]::after { width: 1%; }
+[data-progress="2"]::after { width: 2%; }
+[data-progress="3"]::after { width: 3%; }
+[data-progress="4"]::after { width: 4%; }
+[data-progress="5"]::after { width: 5%; }
+[data-progress="6"]::after { width: 6%; }
+[data-progress="7"]::after { width: 7%; }
+[data-progress="8"]::after { width: 8%; }
+[data-progress="9"]::after { width: 9%; }
+[data-progress="10"]::after { width: 10%; }
+[data-progress="15"]::after { width: 15%; }
+[data-progress="20"]::after { width: 20%; }
+[data-progress="25"]::after { width: 25%; }
+[data-progress="30"]::after { width: 30%; }
+[data-progress="35"]::after { width: 35%; }
+[data-progress="40"]::after { width: 40%; }
+[data-progress="45"]::after { width: 45%; }
+[data-progress="50"]::after { width: 50%; }
+[data-progress="55"]::after { width: 55%; }
+[data-progress="60"]::after { width: 60%; }
+[data-progress="65"]::after { width: 65%; }
+[data-progress="70"]::after { width: 70%; }
+[data-progress="75"]::after { width: 75%; }
+[data-progress="80"]::after { width: 80%; }
+[data-progress="85"]::after { width: 85%; }
+[data-progress="90"]::after { width: 90%; }
+[data-progress="95"]::after { width: 95%; }
+[data-progress="100"]::after { width: 100%; }
+
+/* Language color dots for GitHub */
+[data-language="JavaScript"] {
+  background-color: #f1e05a;
+}
+
+[data-language="TypeScript"] {
+  background-color: #2b7489;
+}
+
+[data-language="Python"] {
+  background-color: #3572a5;
+}
+
+[data-language="Java"] {
+  background-color: #b07219;
+}
+
+[data-language="C++"] {
+  background-color: #f34b7d;
+}
+
+[data-language="C"] {
+  background-color: #555555;
+}
+
+[data-language="Go"] {
+  background-color: #00add8;
+}
+
+[data-language="Rust"] {
+  background-color: #dea584;
+}
+
+[data-language="PHP"] {
+  background-color: #4f5d95;
+}
+
+[data-language="Ruby"] {
+  background-color: #701516;
+}
+
+[data-language="Swift"] {
+  background-color: #ffac45;
+}
+
+[data-language="Kotlin"] {
+  background-color: #f18e33;
+}
+
+[data-language="Dart"] {
+  background-color: #00b4ab;
+}
+
+[data-language="HTML"] {
+  background-color: #e34c26;
+}
+
+[data-language="CSS"] {
+  background-color: #1572b6;
+}
+
+[data-language="Vue"] {
+  background-color: #4fc08d;
+}
+
+[data-language="React"] {
+  background-color: #61dafb;
+}
+
+[data-language="Shell"] {
+  background-color: #89e051;
+}
+
+/* Default language color */
+[data-language]:not([data-language*="JavaScript"]):not([data-language*="TypeScript"]):not([data-language*="Python"]):not([data-language*="Java"]):not([data-language*="C++"]):not([data-language*="C"]):not([data-language*="Go"]):not([data-language*="Rust"]):not([data-language*="PHP"]):not([data-language*="Ruby"]):not([data-language*="Swift"]):not([data-language*="Kotlin"]):not([data-language*="Dart"]):not([data-language*="HTML"]):not([data-language*="CSS"]):not([data-language*="Vue"]):not([data-language*="React"]):not([data-language*="Shell"]) {
+  background-color: #858585;
+}

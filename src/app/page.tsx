@@ -1,4 +1,7 @@
 import Link from "next/link";
+import GitHubStats from "@/components/GitHubStats";
+import GitHubRepos from "@/components/GitHubRepos";
+import LeetCodeStats from "@/components/LeetCodeStats";
 
 export default function Home() {
   return (
@@ -10,7 +13,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               Hi, I&apos;m Harshit Jaiswal
             </h1>
-            <span className="text-3xl">👋</span>
+            <span className="text-3xl float-animation">👋</span>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-6 text-gray-600 dark:text-gray-400">
@@ -42,26 +45,26 @@ export default function Home() {
               Known as @harshitj183 across all platforms, I dream of becoming a successful freelancer while contributing to prestigious 
               organizations like DRDO and ISRO. I'm passionate about continuous learning, AI/ML, prompt engineering with ChatGPT, and building 
               browser extensions. My journey started in 11th grade with blogging, and I've been growing ever since with achievements including 
-              a 50-day LeetCode streak and recent participation in KRMU 4.0 hackathon!
+              contributions to open source and recent participation in KRMU 4.0 hackathon!
             </p>
           </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">24+</div>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 counter-animate">24+</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Freelance Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400">4+</div>
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400 counter-animate">4+</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">50</div>
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 counter-animate">50</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">LeetCode Days</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600 dark:text-red-400">1</div>
+              <div className="text-3xl font-bold text-red-600 dark:text-red-400 counter-animate">1</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Published Research</div>
             </div>
           </div>
@@ -115,8 +118,8 @@ export default function Home() {
                 live: "https://taskmanager.harshitj183.in"
               }
             ].map((project, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">{project.image}</div>
+              <div key={index} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 card-hover fade-in">
+                <div className="text-4xl mb-4 icon-bounce">{project.image}</div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">{project.description}</p>
                 
@@ -221,12 +224,48 @@ export default function Home() {
               { name: "C++", icon: "�", color: "bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400", level: "Intermediate" },
               { name: "AI/ML", icon: "🤖", color: "bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400", level: "Learning" }
             ].map((tech, index) => (
-              <div key={index} className={`${tech.color} rounded-lg p-4 text-center hover:scale-105 transition-transform cursor-pointer`}>
-                <div className="text-3xl mb-2">{tech.icon}</div>
+              <div key={index} className={`${tech.color} rounded-lg p-4 text-center card-hover cursor-pointer tooltip`} data-tooltip={tech.level}>
+                <div className="text-3xl mb-2 icon-bounce">{tech.icon}</div>
                 <div className="font-medium mb-1">{tech.name}</div>
                 <div className="text-xs opacity-75">{tech.level}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live Coding Stats */}
+      <section className="mb-16">
+        <div className="max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">Live Coding Stats</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* GitHub Stats */}
+            <div>
+              <GitHubStats 
+                showRepos={true}
+                showActivity={true}
+                maxRepos={3}
+                maxActivity={3}
+                className=""
+              />
+            </div>
+            
+            {/* LeetCode Stats */}
+            <div>
+              <LeetCodeStats 
+                showSubmissions={true}
+                showBadges={false}
+                maxSubmissions={3}
+                className=""
+              />
+            </div>
+          </div>
+          
+          <div className="text-center mt-6">
+            <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+              View Complete Coding Dashboard →
+            </Link>
           </div>
         </div>
       </section>
@@ -266,8 +305,8 @@ export default function Home() {
                 image: "🔧"
               }
             ].map((article, index) => (
-              <article key={index} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow">
-                <div className="text-3xl mb-4">{article.image}</div>
+              <article key={index} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 card-hover fade-in">
+                <div className="text-3xl mb-4 icon-bounce">{article.image}</div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">{article.category}</span>
                   <span className="text-sm text-gray-500 dark:text-gray-500">•</span>
@@ -295,13 +334,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact" 
-              className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors card-hover"
             >
               Get In Touch
             </Link>
             <Link 
               href="/projects" 
-              className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors"
+              className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors card-hover"
             >
               View My Work
             </Link>

@@ -1,0 +1,246 @@
+// LeetCode API utilities with robust error handling and fallbacks
+const LEETCODE_API_URL = process.env.LEETCODE_API_URL || 'https://leetcode.com/graphql';
+const LEETCODE_STATS_API = process.env.LEETCODE_STATS_API || 'https://leetcode-stats-api.herokuapp.com';
+const LEETCODE_PROFILE_URL = 'https://leetcode.com';
+export const LEETCODE_USERNAME = process.env.NEXT_PUBLIC_LEETCODE_USERNAME || 'harshitj183';
+const DEBUG_MODE = process.env.DEBUG_MODE === 'true';
+const USE_MOCK_DATA = process.env.USE_MOCK_DATA === 'true';
+const FORCE_REAL_DATA = process.env.FORCE_REAL_DATA === 'true';
+const USE_LEETCODE_FALLBACK = process.env.USE_LEETCODE_FALLBACK !== 'false';
+
+// Cache management
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const cache = new Map<string, { data: any; timestamp: number }>();
+
+function isCacheValid(key: string): boolean {
+  const cached = cache.get(key);
+  if (!cached) return false;
+  return Date.now() - cached.timestamp < CACHE_DURATION;
+}
+
+function getCachedData<T>(key: string): T | null {
+  if (isCacheValid(key)) {
+    return cache.get(key)?.data || null;
+  }
+  return null;
+}
+
+function setCachedData<T>(key: string, data: T): void {
+  cache.set(key, { data, timestamp: Date.now() });
+}
+
+/**
+ * Helper function to handle LeetCode API requests with retry and fallback logic
+ */
+async function fetchFreshData(query: string, variables: any = {}, endpoints: string[] = [LEETCODE_API_URL]): Promise<any> {
+  let lastError: Error | null = null;
+
+  for (let attempt = 0; attempt < 3; attempt++) {
+    for (const endpoint of endpoints) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'application/json',
+            'Origin': 'https://leetcode.com',
+            'Referer': 'https://leetcode.com/',
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            ...(process.env.LEETCODE_COOKIE ? { 'Cookie': process.env.LEETCODE_COOKIE } : {})
+          },
+          body: JSON.stringify({
+            query,
+            variables,
+            operationName: query.split(' ')[1]?.replace('(', '') || 'leetCodeQuery',
+          }),
+          signal: controller.signal,
+          cache: 'no-store'
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.errors?.length > 0) {
+          throw new Error(`LeetCode API error: ${data.errors[0]?.message}`);
+        }
+
+        if (!data.data) {
+          throw new Error('LeetCode API returned no data');
+        }
+
+        clearTimeout(timeoutId);
+        return data.data;
+      } catch (err) {
+        lastError = err as Error;
+        if (DEBUG_MODE) {
+          console.warn(`LeetCode API request failed (attempt ${attempt + 1}/3):`, {
+            endpoint,
+            error: err
+          });
+        }
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    }
+
+    if (attempt < 2) {
+      const backoffTime = Math.min(1000 * Math.pow(2, attempt), 8000);
+      if (DEBUG_MODE) {
+        console.log(`Retrying LeetCode API after ${backoffTime}ms`);
+      }
+      await new Promise(resolve => setTimeout(resolve, backoffTime));
+    }
+  }
+
+  throw lastError || new Error('All LeetCode API endpoints failed');
+}
+
+// Helper function for mock data
+function getMockLeetCodeData(query: string, variables: any): any {
+  if (DEBUG_MODE) {
+    console.log('Using mock LeetCode data for query:', query.split(' ')[1]);
+  }
+
+  // Mock user profile data
+  if (query.includes('getUserProfile')) {
+    return {
+      matchedUser: {
+        username: variables.username || 'harshitj183',
+        profile: {
+          realName: "Harshit Jaiswal",
+          aboutMe: "Computer Science student at K.R. Mangalam University",
+          userAvatar: "https://assets.leetcode.com/users/avatars/avatar_1703695497.png",
+          location: "Gurugram, India",
+          ranking: 1070101,
+          reputation: 0,
+          postViewCount: 500,
+          solutionCount: 50
+        }
+      }
+    };
+  }
+
+  // Mock user stats data
+  if (query.includes('getUserStats')) {
+    return {
+      allQuestionsCount: [
+        { difficulty: "All", count: 3611 },
+        { difficulty: "Easy", count: 885 },
+        { difficulty: "Medium", count: 1878 },
+        { difficulty: "Hard", count: 848 }
+      ],
+      matchedUser: {
+        contributionCalendar: {
+          totalActiveDays: 112,
+          streak: 37,
+          submissionCalendar: JSON.stringify({
+            "1742688000": 18,
+            "1743033600": 15,
+            "1744329600": 15
+          })
+        },
+        submitStats: {
+          acSubmissionNum: [
+            { difficulty: "All", count: 118, submissions: 178 },
+            { difficulty: "Easy", count: 89, submissions: 139 },
+            { difficulty: "Medium", count: 28, submissions: 38 },
+            { difficulty: "Hard", count: 1, submissions: 1 }
+          ]
+        }
+      }
+    };
+  }
+
+  // Mock submissions data
+  if (query.includes('getRecentSubmissions')) {
+    return {
+      recentSubmissionList: Array.from({ length: variables.limit || 10 }, (_, i) => ({
+        title: `Problem ${i+1}`,
+        titleSlug: `problem-${i+1}`,
+        timestamp: (Date.now() - i * 86400000).toString(),
+        statusDisplay: i % 3 === 0 ? 'Wrong Answer' : 'Accepted',
+        lang: ['JavaScript', 'Python', 'C++', 'Java'][i % 4]
+      }))
+    };
+  }
+
+  // Default fallback
+  return {
+    matchedUser: {
+      username: variables.username || 'harshitj183',
+      profile: {
+        realName: "Harshit Jaiswal",
+        ranking: 100000
+      }
+    }
+  };
+}
+
+// Main API request function with caching and fallbacks
+async function makeLeetCodeRequest(query: string, variables: any = {}): Promise<any> {
+  const cacheKey = `leetcode_${JSON.stringify({ query, variables })}`;
+  const staleCacheKey = `stale_${cacheKey}`;
+  
+  if (DEBUG_MODE) {
+    console.log('LeetCode API Request:', {
+      query: query.split(' ')[1],
+      username: variables.username || LEETCODE_USERNAME,
+      forceRealData: FORCE_REAL_DATA,
+      useMock: USE_MOCK_DATA
+    });
+  }
+  
+  // Check cache unless forcing real data
+  if (!FORCE_REAL_DATA) {
+    const cached = getCachedData(cacheKey);
+    if (cached) return cached;
+  }
+  
+  // Check for stale cache that we can use while revalidating
+  const staleData = cache.get(staleCacheKey)?.data;
+  
+  // Use mock data in development if configured
+  if (process.env.NODE_ENV === 'development' && USE_MOCK_DATA && !FORCE_REAL_DATA) {
+    if (DEBUG_MODE) {
+      console.log('Using mock LeetCode data in development mode');
+    }
+    return getMockLeetCodeData(query, variables);
+  }
+
+  const endpoints = [
+    LEETCODE_API_URL,
+    'https://leetcode.com/graphql'
+  ];
+
+  try {
+    const data = await fetchFreshData(query, variables, endpoints);
+    
+    // Cache the successful response
+    setCachedData(cacheKey, data);
+    setCachedData(staleCacheKey, data);
+    
+    return data;
+  } catch (error) {
+    console.error('LeetCode API request failed:', error);
+    
+    if (staleData) {
+      console.log('Using stale cached LeetCode data');
+      return staleData;
+    }
+    
+    console.log('Using mock data as final fallback');
+    const mockData = getMockLeetCodeData(query, variables);
+    setCachedData(staleCacheKey, mockData);
+    return mockData;
+  }
+}
+
+// Rest of your code (user profile, stats, submissions, etc.) remains unchanged

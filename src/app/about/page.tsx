@@ -39,8 +39,7 @@ export default function About() {
               <p>
                 My recent achievements include publishing a research paper on "Innovative Systems and Ethical Data Practices to Increase Organ Donations" 
                 in the International Journal of Scientific Research in Engineering and Management (IJSREM), participating in the KRMU 4.0 hackathon, 
-                and maintaining a 50-day continuous coding streak on LeetCode. These accomplishments reflect my commitment to continuous learning and 
-                contributing to both academic research and practical technology solutions.
+                and staying engaged with the technology community through GitHub contributions and conference participation. These accomplishments reflect my commitment to continuous learning and contributing to both academic research and practical technology solutions.
               </p>
             </div>
           </div>

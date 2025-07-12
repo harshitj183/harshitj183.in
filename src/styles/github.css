@@ -1,0 +1,75 @@
+/* GitHub Components Styles */
+
+/* Language dot colors */
+.language-dot {
+  flex-shrink: 0;
+}
+
+/* Loading animation */
+.github-loading {
+  @apply animate-pulse;
+}
+
+.github-loading .skeleton {
+  @apply bg-gray-300 dark:bg-gray-600 rounded;
+}
+
+/* Activity feed */
+.activity-item {
+  @apply flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow;
+}
+
+/* Repository cards */
+.repo-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow;
+}
+
+.repo-title {
+  @apply font-semibold text-gray-900 dark:text-white truncate hover:text-blue-600 dark:hover:text-blue-400 transition-colors;
+}
+
+.repo-description {
+  @apply text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3;
+}
+
+.repo-stats {
+  @apply flex items-center gap-3 text-sm text-gray-500;
+}
+
+.repo-language {
+  @apply flex items-center gap-2;
+}
+
+.repo-language-dot {
+  @apply w-3 h-3 rounded-full flex-shrink-0;
+}
+
+.repo-topics {
+  @apply flex flex-wrap gap-1;
+}
+
+.repo-topic {
+  @apply px-2 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs rounded;
+}
+
+/* Live indicator */
+.live-indicator {
+  @apply w-2 h-2 bg-green-500 rounded-full animate-pulse;
+}
+
+/* GitHub stats grid */
+.github-stats-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+}
+
+.github-stat-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 text-center;
+}
+
+.github-stat-number {
+  @apply text-2xl font-bold;
+}
+
+.github-stat-label {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
