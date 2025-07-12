@@ -11,7 +11,7 @@
     "clean-all": "node build-helpers.js clean-all",
     "build:clean": "npm run clean && npm run build",
     "build:static": "cross-env EXPORT_MODE=true npm run build",
-    "export": "cross-env EXPORT_MODE=true npm run build && next export"
+    "export": "cross-env EXPORT_MODE=true npm run build"
   },
   "dependencies": {
     "next": "15.3.4",

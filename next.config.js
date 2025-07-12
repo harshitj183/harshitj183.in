@@ -9,8 +9,11 @@ const config = {
     unoptimized: true,
   },
 
-  // Support static exports only when EXPORT_MODE is set
-  output: process.env.EXPORT_MODE ? 'export' : undefined,
+  // Support static exports always for GitHub Pages
+  output: 'export',
+  
+  // Add trailing slashes for better GitHub Pages compatibility
+  trailingSlash: true,
 
   // Webpack configuration for TypeScript and module resolution
   webpack: (config) => {
