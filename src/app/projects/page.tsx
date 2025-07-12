@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import GitHubRepos from '@/components/GitHubRepos';
 
@@ -303,7 +302,7 @@ export default function Projects() {
         <h2 className="text-2xl font-bold mb-4">Ready for your next project?</h2>
         <p className="mb-6 max-w-2xl mx-auto">
           With 24+ completed freelance projects and experience in full-stack development, AI/ML, and browser extensions, 
-          I'm ready to bring your ideas to life. Let's build something amazing together!
+          I&apos;m ready to bring your ideas to life. Let&apos;s build something amazing together!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 

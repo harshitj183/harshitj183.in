@@ -11,7 +11,7 @@ export default function Contact() {
           </h1>
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
             Have a project in mind? Want to collaborate? Or just want to say hello? 
-            I'd love to hear from you! Let's discuss how we can work together to bring your ideas to life.
+            I&apos;d love to hear from you! Let&apos;s discuss how we can work together to bring your ideas to life.
           </p>
         </div>
       </section>
@@ -104,7 +104,7 @@ export default function Contact() {
               <h3 className="font-semibold text-green-800 dark:text-green-400">Available for New Projects</h3>
             </div>
             <p className="text-green-700 dark:text-green-300 mt-2 text-sm">
-              I'm currently available for freelance projects and collaborations. Let's create something amazing together!
+              I&apos;m currently available for freelance projects and collaborations. Let&apos;s create something amazing together!
             </p>
           </div>
         </div>

@@ -8,7 +8,7 @@ export default function About() {
             About Me
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
-            I'm Harshit Jaiswal, a passionate full-stack web developer and computer science student 
+            I&apos;m Harshit Jaiswal, a passionate full-stack web developer and computer science student 
             dedicated to creating exceptional digital experiences that make a difference.
           </p>
         </div>
@@ -23,7 +23,7 @@ export default function About() {
               <p>
                 Born in Rajapur, Chitrakoot, UP (near Prayagraj) on September 12, 2005, my journey into technology began during my school years at S Tulsi Inter College. 
                 After completing my 10th and 12th from UP Board, I took a gap year (2022-2023) to explore my passion for technology before joining K.R. Mangalam University 
-                in Haryana, Delhi NCR, where I'm currently pursuing B.Tech in Computer Science Engineering with an expected graduation in 2027.
+                in Haryana, Delhi NCR, where I&apos;m currently pursuing B.Tech in Computer Science Engineering with an expected graduation in 2027.
               </p>
               <p>
                 My entrepreneurial spirit emerged early - in 11th grade, I started a blog at harshitj183.blogspot.com using Google&apos;s Blogger platform. 
@@ -32,12 +32,12 @@ export default function About() {
                 that honed my skills in blog management, SEO, and Google Search Console.
               </p>
               <p>
-                As a freelancer since 2020, I've successfully completed over 24 diverse projects for clients, ranging from simple websites to complex full-stack solutions. 
-                My professional experience includes internships as a WordPress Developer at SenpaiHost and an AI Intern at CodeAlpha, where I've gained valuable 
+                As a freelancer since 2020, I&apos;ve successfully completed over 24 diverse projects for clients, ranging from simple websites to complex full-stack solutions. 
+                My professional experience includes internships as a WordPress Developer at SenpaiHost and an AI Intern at CodeAlpha, where I&apos;ve gained valuable 
                 insights into working with teams, managing client requirements, and delivering projects within tight deadlines.
               </p>
               <p>
-                My recent achievements include publishing a research paper on "Innovative Systems and Ethical Data Practices to Increase Organ Donations" 
+                My recent achievements include publishing a research paper on &quot;Innovative Systems and Ethical Data Practices to Increase Organ Donations&quot; 
                 in the International Journal of Scientific Research in Engineering and Management (IJSREM), participating in the KRMU 4.0 hackathon, 
                 and staying engaged with the technology community through GitHub contributions and conference participation. These accomplishments reflect my commitment to continuous learning and contributing to both academic research and practical technology solutions.
               </p>
@@ -49,7 +49,7 @@ export default function About() {
             <div className="space-y-6 text-gray-600 dark:text-gray-400">
               <p>
                 I believe that technology should empower people and make their lives easier. This philosophy 
-                drives every line of code I write and every solution I design. Whether it's building a user-friendly 
+                drives every line of code I write and every solution I design. Whether it&apos;s building a user-friendly 
                 interface or optimizing backend performance, I always keep the end user in mind. My recent research 
                 on organ donation systems reflects this commitment to using technology for social good.
               </p>
@@ -68,9 +68,9 @@ export default function About() {
               </p>
               <p>
                 The rapidly evolving nature of web development, AI, and emerging technologies like prompt engineering 
-                with ChatGPT excites me. I'm constantly exploring new frameworks, learning cutting-edge technologies, 
+                with ChatGPT excites me. I&apos;m constantly exploring new frameworks, learning cutting-edge technologies, 
                 and staying updated with industry best practices. From building browser extensions to creating full-stack 
-                applications, I enjoy pushing the boundaries of what's possible with code.
+                applications, I enjoy pushing the boundaries of what&apos;s possible with code.
               </p>
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function About() {
       {/* Call to Action */}
       <section className="text-center">
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Let's Connect</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Let&apos;s Connect</h2>
           <p className="text-lg mb-6 opacity-90">
             Ready to collaborate on your next project or discuss exciting opportunities?
           </p>

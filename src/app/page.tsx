@@ -1,6 +1,5 @@
 import Link from "next/link";
 import GitHubStats from "@/components/GitHubStats";
-import GitHubRepos from "@/components/GitHubRepos";
 import LeetCodeStats from "@/components/LeetCodeStats";
 
 export default function Home() {
@@ -36,15 +35,15 @@ export default function Home() {
               Web Developer | Programmer | Lifelong Learner | Author | Student
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 max-w-3xl">
-              I'm a passionate second-year Computer Science student at K.R. Mangalam University with hands-on experience in full-stack web development. 
+              I&apos;m a passionate second-year Computer Science student at K.R. Mangalam University with hands-on experience in full-stack web development. 
               With over 24 completed freelance projects, I specialize in creating innovative web solutions using modern technologies like JavaScript, 
               React, PHP, MySQL, and WordPress. Currently working as a WordPress Developer Intern at SenpaiHost and completed AI Internship at CodeAlpha.
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
-              Recently published research on "Innovative Systems and Ethical Data Practices to Increase Organ Donations" in IJSREM journal. 
+              Recently published research on &quot;Innovative Systems and Ethical Data Practices to Increase Organ Donations&quot; in IJSREM journal. 
               Known as @harshitj183 across all platforms, I dream of becoming a successful freelancer while contributing to prestigious 
-              organizations like DRDO and ISRO. I'm passionate about continuous learning, AI/ML, prompt engineering with ChatGPT, and building 
-              browser extensions. My journey started in 11th grade with blogging, and I've been growing ever since with achievements including 
+              organizations like DRDO and ISRO. I&apos;m passionate about continuous learning, AI/ML, prompt engineering with ChatGPT, and building 
+              browser extensions. My journey started in 11th grade with blogging, and I&apos;ve been growing ever since with achievements including 
               contributions to open source and recent participation in KRMU 4.0 hackathon!
             </p>
           </div>

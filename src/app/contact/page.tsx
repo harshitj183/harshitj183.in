@@ -11,7 +11,7 @@ export default function Contact() {
           </h1>
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
             Have a project in mind? Want to collaborate on innovative web solutions? Or just want to say hello? 
-            I'd love to hear from you! As a freelance web developer with 24+ completed projects, I'm always excited 
+            I&apos;d love to hear from you! As a freelance web developer with 24+ completed projects, I&apos;m always excited 
             to discuss new opportunities and bring creative ideas to life.
           </p>
         </div>

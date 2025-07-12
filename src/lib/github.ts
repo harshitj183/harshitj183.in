@@ -2,7 +2,6 @@
 const GITHUB_USERNAME = 'harshitj183';
 const GITHUB_API_BASE = 'https://api.github.com';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 // Helper function to get GitHub API headers
 function getGitHubHeaders(): HeadersInit {
@@ -90,7 +89,7 @@ export interface GitHubActivity {
     name: string;
     url: string;
   };
-  payload: any;
+  payload: unknown;
   public: boolean;
   created_at: string;
 }
@@ -100,7 +99,7 @@ export interface GitHubLanguages {
 }
 
 // Cache implementation
-const cache = new Map<string, { data: any; timestamp: number }>();
+const cache = new Map<string, { data: unknown; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 function getCachedData<T>(key: string): T | null {
@@ -111,7 +110,7 @@ function getCachedData<T>(key: string): T | null {
   return null;
 }
 
-function setCachedData(key: string, data: any): void {
+function setCachedData(key: string, data: unknown): void {
   cache.set(key, { data, timestamp: Date.now() });
 }
 

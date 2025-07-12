@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { fetchGitHubRepos, formatDate, getLanguageColor, GitHubRepo } from '@/lib/github';
+import { fetchGitHubRepos, formatDate, GitHubRepo } from '@/lib/github';
 
 interface GitHubReposProps {
   maxRepos?: number;

@@ -8,7 +8,7 @@ import {
   LeetCodeUser,
   LeetCodeStats as LeetCodeStatsType,
 } from '@/lib/leetcode';
-import { LoadingStats, LoadingCard } from '@/components/LoadingSpinner';
+import { LoadingStats } from '@/components/LoadingSpinner';
 import { ErrorFallback } from '@/components/ErrorBoundary';
 import RefreshButton from '@/components/RefreshButton';
 
@@ -21,7 +21,6 @@ export default function LeetCodeStats({ className = '' }: LeetCodeStatsProps) {
   const [stats, setStats] = useState<LeetCodeStatsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const loadLeetCodeData = async () => {
     try {
@@ -63,8 +62,6 @@ export default function LeetCodeStats({ className = '' }: LeetCodeStatsProps) {
           throw graphqlError;
         }
       }
-
-      setLastUpdated(new Date());
     } catch (err) {
       console.error('Error loading LeetCode data:', err);
       setError(err instanceof Error ? err : new Error('Failed to load LeetCode data'));
@@ -116,7 +113,7 @@ export default function LeetCodeStats({ className = '' }: LeetCodeStatsProps) {
             )}
           </div>
         </div>
-        <RefreshButton onRefresh={loadLeetCodeData} showToast={false} size="sm" />
+        <RefreshButton onRefresh={loadLeetCodeData} size="sm" />
       </div>
 
       {/* Stats Grid */}

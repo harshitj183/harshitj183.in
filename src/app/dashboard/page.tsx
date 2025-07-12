@@ -3,12 +3,6 @@
 import { Suspense } from 'react';
 import UnifiedDashboard from '../../components/UnifiedDashboard';
 
-// Type-safe metadata
-const metadata = {
-  title: 'Dashboard | Harshit Jaiswal',
-  description: 'Dashboard displaying my GitHub and LeetCode statistics',
-};
-
 export default function DashboardPage() {
   return (
     <main className="container mx-auto px-4 py-8">

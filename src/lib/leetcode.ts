@@ -4,7 +4,6 @@ const LEETCODE_STATS_API = process.env.LEETCODE_STATS_API || 'https://leetcode-s
 const LEETCODE_PROFILE_URL = 'https://leetcode.com';
 export const LEETCODE_USERNAME = process.env.NEXT_PUBLIC_LEETCODE_USERNAME || 'harshitj183';
 const DEBUG_MODE = process.env.DEBUG_MODE === 'true';
-const USE_MOCK_DATA = process.env.USE_MOCK_DATA === 'true';
 const FORCE_REAL_DATA = process.env.FORCE_REAL_DATA === 'true';
 const USE_PUBLIC_STATS_API = process.env.USE_PUBLIC_STATS_API !== 'false';
 
@@ -100,7 +99,7 @@ interface LeetCodeResponse {
 
 // Cache management
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-const cache = new Map<string, { data: any; timestamp: number }>();
+const cache = new Map<string, { data: unknown; timestamp: number }>();
 
 function isCacheValid(key: string): boolean {
   const cached = cache.get(key);

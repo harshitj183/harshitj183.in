@@ -7,15 +7,13 @@ interface RefreshButtonProps {
   disabled?: boolean;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
-  showToast?: boolean;
 }
 
 export default function RefreshButton({ 
   onRefresh, 
   disabled = false, 
   size = 'md',
-  className = '',
-  showToast = true
+  className = ''
 }: RefreshButtonProps) {
   const [isRefreshing, setIsRefreshing] = useState(false);
 

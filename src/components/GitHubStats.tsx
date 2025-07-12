@@ -6,14 +6,13 @@ import {
   fetchGitHubRepos, 
   fetchGitHubActivity, 
   formatDate, 
-  getLanguageColor, 
   getActivityIcon, 
   getActivityDescription,
   GitHubUser,
   GitHubRepo,
   GitHubActivity 
 } from '@/lib/github';
-import { LoadingStats, LoadingCard } from '@/components/LoadingSpinner';
+import { LoadingStats } from '@/components/LoadingSpinner';
 import { ErrorFallback } from '@/components/ErrorBoundary';
 import RefreshButton from '@/components/RefreshButton';
 
@@ -37,7 +36,6 @@ export default function GitHubStats({
   const [activity, setActivity] = useState<GitHubActivity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const loadGitHubData = async () => {
     try {
@@ -59,8 +57,6 @@ export default function GitHubStats({
         const activityData = await fetchGitHubActivity();
         setActivity(activityData.slice(0, maxActivity));
       }
-
-      setLastUpdated(new Date());
     } catch (err) {
       setError('Failed to load GitHub data');
       console.error('GitHub API error:', err);

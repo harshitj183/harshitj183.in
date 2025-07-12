@@ -24,7 +24,6 @@ export default function GitHubActivityTimeline({
   const [activities, setActivities] = useState<GitHubActivity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const loadActivities = async () => {
     try {
@@ -35,7 +34,6 @@ export default function GitHubActivityTimeline({
       
       // Take only the most recent activities up to maxItems
       setActivities(githubActivities.slice(0, maxItems));
-      setLastUpdated(new Date());
     } catch (err) {
       console.error('Error loading GitHub activities:', err);
       setError(err instanceof Error ? err : new Error('Failed to load GitHub activities'));
@@ -70,7 +68,6 @@ export default function GitHubActivityTimeline({
           <RefreshButton 
             onRefresh={loadActivities}
             size="sm"
-            showToast={false}
           />
         </div>
       </div>
