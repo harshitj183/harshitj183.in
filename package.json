@@ -13,7 +13,8 @@
     "build:static": "cross-env EXPORT_MODE=true npm run build",
     "build:no-lint": "cross-env NEXT_DISABLE_ESLINT=1 npm run build",
     "build:static:no-lint": "cross-env NEXT_DISABLE_ESLINT=1 EXPORT_MODE=true npm run build",
-    "export": "cross-env EXPORT_MODE=true npm run build"
+    "export": "cross-env EXPORT_MODE=true npm run build",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "next": "15.3.4",

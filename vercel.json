@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npm run build:static:no-lint",
+  "installCommand": "npm ci",
+  "outputDirectory": "out",
+  "framework": "nextjs",
+  "devCommand": "npm run dev"
+}
