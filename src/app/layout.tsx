@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import DesktopSidebar from "@/components/DesktopSidebar";
 import MobileNavigation from "@/components/MobileNavigation";
+import ClarityAnalytics from "@/components/ClarityAnalytics";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -68,6 +69,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        {/* Microsoft Clarity Analytics using environment variable */}
+        <ClarityAnalytics />
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
           <DesktopSidebar />
           <MobileNavigation />
