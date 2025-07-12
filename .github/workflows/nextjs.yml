@@ -42,7 +42,12 @@ jobs:
           echo "NPM version: $(npm -v)"
           echo "Current directory: $(pwd)"
           echo "Directory content: $(ls -la)"
-          npm run build:static:no-lint
+          
+          # Install cross-env explicitly
+          npm install cross-env --no-save
+          
+          # Build with ESLint disabled and set for export
+          NEXT_DISABLE_ESLINT=1 EXPORT_MODE=true npm run build
         env:
           NODE_OPTIONS: --max-old-space-size=4096
       - name: Upload artifact
