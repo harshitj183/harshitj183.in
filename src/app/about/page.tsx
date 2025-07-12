@@ -26,7 +26,7 @@ export default function About() {
                 in Haryana, Delhi NCR, where I'm currently pursuing B.Tech in Computer Science Engineering with an expected graduation in 2027.
               </p>
               <p>
-                My entrepreneurial spirit emerged early - in 11th grade, I started a blog at harshitj183.blogspot.com using Google's Blogger platform. 
+                My entrepreneurial spirit emerged early - in 11th grade, I started a blog at harshitj183.blogspot.com using Google&apos;s Blogger platform. 
                 This experience introduced me to HTML, CSS, and JavaScript, laying the foundation for my future in web development. 
                 In August 2022, after passing 12th grade, I expanded my horizons by launching harshitj183.in on WordPress, working on numerous projects 
                 that honed my skills in blog management, SEO, and Google Search Console.

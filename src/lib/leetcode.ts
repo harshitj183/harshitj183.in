@@ -42,6 +42,62 @@ export interface LeetCodeStats {
   reputation: number;
 }
 
+export interface LeetCodePublicStats {
+  status: string;
+  message: string;
+  totalSolved: number;
+  totalQuestions: number;
+  easySolved: number;
+  mediumSolved: number;
+  hardSolved: number;
+  acceptanceRate: number;
+  ranking: number;
+  contributionPoints: number;
+  reputation: number;
+  totalEasy: number;
+  totalMedium: number;
+  totalHard: number;
+}
+
+interface LeetCodeResponse {
+  data?: {
+    matchedUser?: {
+      username?: string;
+      githubUrl?: string;
+      twitterUrl?: string;
+      linkedinUrl?: string;
+      submitStats?: {
+        acSubmissionNum?: Array<{
+          difficulty?: string;
+          count: number;
+          submissions?: number;
+        }>;
+        totalSubmissionNum?: Array<{
+          difficulty?: string;
+          count: number;
+          submissions?: number;
+        }>;
+      };
+      profile?: {
+        realName?: string;
+        aboutMe?: string;
+        userAvatar?: string;
+        location?: string;
+        skillTags?: string[];
+        postViewCount?: number;
+        solutionCount?: number;
+        reputation?: number;
+        ranking?: number;
+      };
+    };
+    allQuestionsCount?: Array<{
+      difficulty: string;
+      count: number;
+    }>;
+  };
+  errors?: Array<{ message: string }>;
+}
+
 // Cache management
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -116,7 +172,51 @@ const GET_USER_STATS = `
 /**
  * Helper function to handle LeetCode API requests with retry and fallback logic
  */
-async function makeLeetCodeRequest(query: string, variables: any = {}): Promise<any> {
+interface LeetCodeResponse {
+  data?: {
+    matchedUser?: {
+      username?: string;
+      githubUrl?: string;
+      twitterUrl?: string;
+      linkedinUrl?: string;
+      submitStats?: {
+        acSubmissionNum?: Array<{
+          difficulty?: string;
+          count: number;
+          submissions?: number;
+        }>;
+        totalSubmissionNum?: Array<{
+          difficulty?: string;
+          count: number;
+          submissions?: number;
+        }>;
+      };
+      profile?: {
+        realName?: string;
+        aboutMe?: string;
+        userAvatar?: string;
+        location?: string;
+        skillTags?: string[];
+        postViewCount?: number;
+        solutionCount?: number;
+        reputation?: number;
+        ranking?: number;
+      };
+    };
+    allQuestionsCount?: Array<{
+      difficulty: string;
+      count: number;
+    }>;
+  };
+  errors?: Array<{ message: string }>;
+}
+
+interface RequestVariables {
+  username?: string;
+  [key: string]: unknown;
+}
+
+async function makeLeetCodeRequest(query: string, variables: RequestVariables = {}): Promise<LeetCodeResponse> {
   const cacheKey = `leetcode_${JSON.stringify({ query, variables })}`;
   
   if (DEBUG_MODE) {
@@ -130,17 +230,17 @@ async function makeLeetCodeRequest(query: string, variables: any = {}): Promise<
   
   // Check cache unless forcing real data
   if (!FORCE_REAL_DATA) {
-    const cached = getCachedData(cacheKey);
+    const cached = getCachedData<LeetCodeResponse>(cacheKey);
     if (cached) return cached;
   }
 
   // If configured to use public API and it's a stats request, try that first
   if (USE_PUBLIC_STATS_API && query.includes('getUserStats')) {
     try {
-      const publicStats = await fetchLeetCodeStatsFromAPI();
-      if (publicStats) {
-        setCachedData(cacheKey, publicStats);
-        return publicStats;
+      const convertedStats = await fetchAndConvertPublicStats();
+      if (convertedStats?.data) {
+        setCachedData<LeetCodeResponse>(cacheKey, convertedStats);
+        return convertedStats;
       }
     } catch (err) {
       console.warn('Failed to fetch from public stats API, falling back to GraphQL:', err);
@@ -176,62 +276,80 @@ async function makeLeetCodeRequest(query: string, variables: any = {}): Promise<
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`LeetCode API error: ${response.status} ${response.statusText}`);
       }
 
-      const data = await response.json();
-
-      if (data.errors?.length > 0) {
-        throw new Error(`LeetCode API error: ${data.errors[0]?.message}`);
-      }
-
-      if (!data.data) {
-        throw new Error('LeetCode API returned no data');
-      }
-
-      // Cache successful response
-      setCachedData(cacheKey, data.data);
-      return data.data;
-    } catch (err) {
-      if (DEBUG_MODE) {
-        console.warn(`LeetCode API request failed (attempt ${attempt + 1}/3):`, err);
-      }
+      const responseData = await response.json();
       
-      if (attempt === 2) {
-        // On final attempt, try the public API again for stats if we haven't already
-        if (!USE_PUBLIC_STATS_API && query.includes('getUserStats')) {
-          try {
-            const publicStats = await fetchLeetCodeStatsFromAPI();
-            if (publicStats) {
-              setCachedData(cacheKey, publicStats);
-              return publicStats;
-            }
-          } catch (finalErr) {
-            throw err; // Throw the original error if public API also fails
-          }
-        } else {
-          throw err;
-        }
+      // Validate the response structure
+      if (!responseData || typeof responseData !== 'object') {
+        throw new Error('Invalid response format from LeetCode API');
       }
 
-      // Backoff before retry
-      await new Promise(resolve => setTimeout(resolve, Math.min(1000 * Math.pow(2, attempt), 8000)));
+      const typedResponse: LeetCodeResponse = responseData;
+
+      if (typedResponse.errors && typedResponse.errors.length > 0) {
+        throw new Error(`LeetCode API error: ${typedResponse.errors[0].message}`);
+      }
+
+      setCachedData<LeetCodeResponse>(cacheKey, typedResponse);
+      return typedResponse;
+
+    } catch (error) {
+      if (attempt === 2) throw error;
+      await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
     }
   }
 
-  throw new Error('Failed to fetch LeetCode data after retries');
+  throw new Error('Failed to fetch data from LeetCode API after multiple attempts');
+}
+
+// Internal function to fetch and convert stats from the public API
+async function fetchAndConvertPublicStats(): Promise<LeetCodeResponse> {
+  const response = await fetch(`${LEETCODE_STATS_API}/${LEETCODE_USERNAME}`);
+  
+  if (!response.ok) {
+    throw new Error(`Stats API error: ${response.status} ${response.statusText}`);
+  }
+
+  const stats: LeetCodePublicStats = await response.json();
+
+  // Convert public API format to GraphQL response format
+  return {
+    data: {
+      matchedUser: {
+        submitStats: {
+          acSubmissionNum: [
+            { count: stats.totalSolved || 0 },
+            { count: stats.easySolved || 0 },
+            { count: stats.mediumSolved || 0 },
+            { count: stats.hardSolved || 0 }
+          ]
+        },
+        profile: {
+          ranking: stats.ranking,
+          reputation: stats.reputation
+        }
+      },
+      allQuestionsCount: [
+        { difficulty: 'Easy', count: stats.totalEasy || 0 },
+        { difficulty: 'Medium', count: stats.totalMedium || 0 },
+        { difficulty: 'Hard', count: stats.totalHard || 0 }
+      ]
+    }
+  };
 }
 
 // Exported API functions
 export async function fetchLeetCodeUser(username: string = LEETCODE_USERNAME): Promise<LeetCodeUser> {
   try {
-    const data = await makeLeetCodeRequest(GET_USER_PROFILE, { username });
+    const response = await makeLeetCodeRequest(GET_USER_PROFILE, { username });
 
-    if (!data?.matchedUser) {
+    if (!response?.data?.matchedUser) {
       throw new Error('No user data returned');
     }
 
-    const user = data.matchedUser;
+    const user = response.data.matchedUser;
     return {
       username: user.username || username,
       name: user.profile?.realName || username,
@@ -260,22 +378,22 @@ export async function fetchLeetCodeUser(username: string = LEETCODE_USERNAME): P
 
 export async function fetchLeetCodeStats(username: string = LEETCODE_USERNAME): Promise<LeetCodeStats> {
   try {
-    const data = await makeLeetCodeRequest(GET_USER_STATS, { username });
+    const response = await makeLeetCodeRequest(GET_USER_STATS, { username });
 
-    if (!data?.matchedUser || !data.allQuestionsCount) {
+    if (!response?.data?.matchedUser || !response.data.allQuestionsCount) {
       throw new Error('Invalid stats data returned');
     }
 
-    const stats = data.matchedUser.submitStats;
-    const totalStats = stats?.acSubmissionNum?.find((s: any) => s.difficulty === 'All') || { count: 0, submissions: 0 };
-    const easyStats = stats?.acSubmissionNum?.find((s: any) => s.difficulty === 'Easy') || { count: 0 };
-    const mediumStats = stats?.acSubmissionNum?.find((s: any) => s.difficulty === 'Medium') || { count: 0 };
-    const hardStats = stats?.acSubmissionNum?.find((s: any) => s.difficulty === 'Hard') || { count: 0 };
+    const stats = response.data.matchedUser.submitStats;
+    const totalStats = stats?.acSubmissionNum?.find(s => s.difficulty === 'All') || { count: 0, submissions: 0 };
+    const easyStats = stats?.acSubmissionNum?.find(s => s.difficulty === 'Easy') || { count: 0 };
+    const mediumStats = stats?.acSubmissionNum?.find(s => s.difficulty === 'Medium') || { count: 0 };
+    const hardStats = stats?.acSubmissionNum?.find(s => s.difficulty === 'Hard') || { count: 0 };
 
-    const totalQuestions = data.allQuestionsCount.reduce((sum: number, q: any) => 
+    const totalQuestions = response.data.allQuestionsCount.reduce((sum, q) => 
       sum + (q.difficulty !== 'All' ? q.count : 0), 0);
 
-    const acceptanceRate = totalStats.submissions > 0 
+    const acceptanceRate = totalStats.submissions && totalStats.submissions > 0 
       ? (totalStats.count / totalStats.submissions) * 100 
       : 0;
 
@@ -286,9 +404,9 @@ export async function fetchLeetCodeStats(username: string = LEETCODE_USERNAME): 
       mediumSolved: mediumStats.count,
       hardSolved: hardStats.count,
       acceptanceRate: Math.round(acceptanceRate * 100) / 100,
-      ranking: data.matchedUser.profile?.ranking || 100000,
+      ranking: response.data.matchedUser.profile?.ranking || 100000,
       contributionPoints: 0,
-      reputation: data.matchedUser.profile?.reputation || 0
+      reputation: response.data.matchedUser.profile?.reputation || 0
     };
   } catch (error) {
     console.error('Error fetching LeetCode stats:', error);
@@ -296,13 +414,15 @@ export async function fetchLeetCodeStats(username: string = LEETCODE_USERNAME): 
   }
 }
 
-export async function fetchLeetCodeStatsFromAPI(username: string = LEETCODE_USERNAME): Promise<any> {
+// Export the typed version for external use
+export async function fetchLeetCodeStatsFromAPI(username: string = LEETCODE_USERNAME): Promise<LeetCodePublicStats> {
   try {
     const response = await fetch(`${LEETCODE_STATS_API}/${username}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch from LeetCode Stats API: ${response.status}`);
     }
-    return await response.json();
+    const data: LeetCodePublicStats = await response.json();
+    return data;
   } catch (error) {
     console.error('Error fetching from LeetCode Stats API:', error);
     throw error;

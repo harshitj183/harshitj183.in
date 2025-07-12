@@ -108,7 +108,7 @@ export default function Contact() {
               <h3 className="font-semibold text-green-800 dark:text-green-400">Available for New Projects</h3>
             </div>
             <p className="text-green-700 dark:text-green-300 mt-2 text-sm">
-              I'm currently available for freelance projects and collaborations. Let's create something amazing together!
+              I&apos;m currently available for freelance projects and collaborations. Let&apos;s create something amazing together!
             </p>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function Contact() {
               answer: "I specialize in web development including front-end development with React/Next.js, back-end development with Node.js, WordPress development, and full-stack applications. I also offer website maintenance and consulting services."
             },
             {
-              question: "What's your typical project timeline?",
+              question: "What&apos;s your typical project timeline?",
               answer: "Project timelines vary depending on complexity and scope. A simple website might take 1-2 weeks, while a complex web application could take 1-3 months. I'll provide a detailed timeline estimate after discussing your specific requirements."
             },
             {
@@ -141,7 +141,7 @@ export default function Contact() {
               answer: "Yes! I work with clients worldwide. I'm comfortable with remote collaboration and can adjust my schedule to accommodate different time zones for meetings and communication."
             },
             {
-              question: "What's your development process?",
+              question: "What&apos;s your development process?",
               answer: "I follow an agile approach: Discovery & Planning → Design & Wireframing → Development → Testing → Deployment → Maintenance. Throughout the process, I maintain regular communication and provide updates on progress."
             }
           ].map((faq, index) => (
