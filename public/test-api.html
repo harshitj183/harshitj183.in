@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test GitHub API Route</title>
+</head>
+<body>
+    <h1>Test GitHub Repository Preview API</h1>
+    <button onclick="testAPI()">Test API Route</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing API...';
+            
+            try {
+                const response = await fetch('/api/proxy?url=https://github.com/harshitj183/MultiSearch.Extension');
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <h3>API Response:</h3>
+                    <p><strong>Status:</strong> ${response.status}</p>
+                    <p><strong>Response:</strong></p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                
+                if (data.twitterImageUrl) {
+                    resultDiv.innerHTML += `
+                        <h3>Preview Image:</h3>
+                        <img src="${data.twitterImageUrl}" alt="GitHub Preview" style="max-width: 400px; border: 1px solid #ccc;">
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

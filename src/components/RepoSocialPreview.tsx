@@ -58,11 +58,12 @@ export default function RepoSocialPreview({ repo, className = '' }: RepoSocialPr
   // Function to fetch the Twitter image URL from the repository page metadata
   const fetchTwitterImageUrl = async () => {
     try {
-      // Use our API route to fetch the Twitter image URL via Microlink
+      // Use our API route to fetch the Twitter image URL
       const response = await fetch(`/api/proxy?url=${encodeURIComponent(`https://github.com/${repo.full_name}`)}`);
       
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        console.warn(`API returned ${response.status} for ${repo.name}, will use fallback`);
+        return null; // Return null instead of throwing, so fallback works
       }
       
       const data = await response.json();
@@ -81,11 +82,11 @@ export default function RepoSocialPreview({ repo, className = '' }: RepoSocialPr
         return data.twitterImageUrl;
       } else {
         console.log(`No social preview image found for ${repo.name}, API returned:`, data);
-        throw new Error('No social preview image URL found');
+        return null; // Return null instead of throwing
       }
     } catch (error) {
-      console.error(`Error fetching social preview image for ${repo.name}:`, error);
-      return null;
+      console.warn(`Error fetching social preview image for ${repo.name}:`, error);
+      return null; // Return null instead of throwing, so fallback works
     }
   };
   
@@ -137,7 +138,7 @@ export default function RepoSocialPreview({ repo, className = '' }: RepoSocialPr
       ];
       
       const sourceNames = [
-        'Microlink API (Social Preview)',
+        'API Route (GitHub/OpenGraph)',
         'Direct Repository Images',
         'OpenGraph Image',
         'Generated Fallback'
@@ -147,7 +148,13 @@ export default function RepoSocialPreview({ repo, className = '' }: RepoSocialPr
       for (let i = 0; i < imageSources.length; i++) {
         try {
           const imageUrl = await imageSources[i]();
-          await loadImage(imageUrl); // Verify the image loads
+          if (!imageUrl) {
+            console.log(`⚠️  ${sourceNames[i]} returned null for ${repo.name}, trying next source...`);
+            continue;
+          }
+          
+          // Test if the image actually loads
+          await loadImage(imageUrl);
           
           if (bgImageRef.current) {
             bgImageRef.current.style.backgroundImage = `url(${imageUrl})`;
@@ -155,7 +162,8 @@ export default function RepoSocialPreview({ repo, className = '' }: RepoSocialPr
             return; // Exit once we've successfully loaded an image
           }
         } catch (error) {
-          console.log(`❌ ${sourceNames[i]} failed for ${repo.name}, trying next source...`);
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          console.log(`❌ ${sourceNames[i]} failed for ${repo.name}:`, errorMessage);
           // Continue to the next source
         }
       }

@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 /**
- * Simplified API route for fetching GitHub repository social preview images
+ * API route for fetching GitHub repository social preview images
  * Falls back to direct repository image URLs if Microlink fails
  */
 export async function GET(request: NextRequest) {
@@ -31,61 +30,34 @@ export async function GET(request: NextRequest) {
     const [, owner, repo] = match;
     console.log(`Extracted repo: ${owner}/${repo}`);
     
-    // Try Microlink API first
+    // Skip Microlink for now and use GitHub API directly
     let twitterImageUrl = null;
     
+    // Try to get repository ID from GitHub API first
     try {
-      const microlinkUrl = `https://api.microlink.io/?url=${encodeURIComponent(url)}`;
-      console.log(`Trying Microlink: ${microlinkUrl}`);
+      console.log('Trying GitHub API...');
+      const githubApiUrl = `https://api.github.com/repos/${owner}/${repo}`;
       
-      const response = await fetch(microlinkUrl, {
+      const githubResponse = await fetch(githubApiUrl, {
         headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         },
-        cache: 'no-store',
       });
       
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Microlink response status:', data.status);
-        
-        if (data.status === 'success' && data.data?.image?.url) {
-          twitterImageUrl = data.data.image.url;
-          console.log('Found image via Microlink:', twitterImageUrl);
+      if (githubResponse.ok) {
+        const repoData = await githubResponse.json();
+        if (repoData.id) {
+          twitterImageUrl = `https://repository-images.githubusercontent.com/${repoData.id}`;
+          console.log('Using GitHub repository image:', twitterImageUrl);
         }
       } else {
-        console.log('Microlink API returned error:', response.status);
+        console.log('GitHub API returned error:', githubResponse.status);
       }
-    } catch (microlinkError) {
-      console.log('Microlink API failed:', microlinkError);
+    } catch (githubError) {
+      console.log('GitHub API failed:', githubError);
     }
     
-    // If Microlink didn't work, try to get repository ID from GitHub API
-    if (!twitterImageUrl) {
-      try {
-        console.log('Trying GitHub API as fallback...');
-        const githubApiUrl = `https://api.github.com/repos/${owner}/${repo}`;
-        
-        const githubResponse = await fetch(githubApiUrl, {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-          },
-          cache: 'no-store',
-        });
-        
-        if (githubResponse.ok) {
-          const repoData = await githubResponse.json();
-          if (repoData.id) {
-            twitterImageUrl = `https://repository-images.githubusercontent.com/${repoData.id}`;
-            console.log('Using GitHub repository image:', twitterImageUrl);
-          }
-        }
-      } catch (githubError) {
-        console.log('GitHub API fallback failed:', githubError);
-      }
-    }
-    
-    // Final fallback to OpenGraph
+    // If GitHub API didn't work, try OpenGraph
     if (!twitterImageUrl) {
       twitterImageUrl = `https://opengraph.githubassets.com/1/${owner}/${repo}`;
       console.log('Using OpenGraph fallback:', twitterImageUrl);
@@ -95,15 +67,22 @@ export async function GET(request: NextRequest) {
       twitterImageUrl,
       status: 'success',
       message: twitterImageUrl ? 'Image URL found' : 'No image found',
-      source: twitterImageUrl?.includes('repository-images') ? 'github-api' : 
-              twitterImageUrl?.includes('opengraph') ? 'opengraph' : 'microlink'
+      source: twitterImageUrl?.includes('repository-images') ? 'github-api' : 'opengraph'
     });
     
   } catch (error) {
     console.error('API route error:', error);
+    
+    // Return a more specific error response
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorStack = error instanceof Error ? error.stack : '';
+    
+    console.error('Error details:', errorMessage);
+    console.error('Error stack:', errorStack);
+    
     return NextResponse.json({ 
       error: 'Internal server error',
-      message: error instanceof Error ? error.message : 'Unknown error',
+      message: errorMessage,
       status: 'error' 
     }, { status: 500 });
   }
