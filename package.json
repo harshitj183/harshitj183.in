@@ -2,6 +2,26 @@
   "name": "harshitj183.in",
   "version": "0.1.0",
   "private": true,
+  "description": "Personal portfolio website of Harshit Jaiswal - Web Developer, Programmer, and CS Student",
+  "author": {
+    "name": "Harshit Jaiswal",
+    "email": "harshitj183@hotmail.com",
+    "url": "https://harshitj183.in"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harshitj183/harshitj183.in.git"
+  },
+  "homepage": "https://harshitj183.in",
+  "keywords": [
+    "portfolio",
+    "web-developer",
+    "harshit-jaiswal",
+    "freelancer",
+    "react",
+    "nextjs",
+    "full-stack-developer"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
