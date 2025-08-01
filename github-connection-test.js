@@ -80,23 +80,6 @@ async function main() {
   // Check if we can fetch from remote
   results.fetchTest = runCommand('git fetch --dry-run', 'Testing fetch from remote (dry run)');
   
-  // Test website connectivity
-  log('\n🌐 WEBSITE CONNECTIVITY TESTS', 'bright');
-  log('==============================', 'bright');
-  
-  // Test domain resolution
-  results.domainDNS = runCommand('nslookup harshitj183.in', 'Testing DNS resolution for harshitj183.in');
-  results.wwwDomainDNS = runCommand('nslookup www.harshitj183.in', 'Testing DNS resolution for www.harshitj183.in');
-  
-  // Test HTTP connectivity
-  results.httpTest = runCommand('curl -I http://harshitj183.in --connect-timeout 10', 'Testing HTTP connection to harshitj183.in');
-  results.httpsTest = runCommand('curl -I https://harshitj183.in --connect-timeout 10', 'Testing HTTPS connection to harshitj183.in');
-  results.wwwHttpTest = runCommand('curl -I http://www.harshitj183.in --connect-timeout 10', 'Testing HTTP connection to www.harshitj183.in');
-  results.wwwHttpsTest = runCommand('curl -I https://www.harshitj183.in --connect-timeout 10', 'Testing HTTPS connection to www.harshitj183.in');
-  
-  // Check GitHub Pages status
-  results.githubPages = runCommand('gh api repos/harshitj183/harshitj183.in/pages', 'Checking GitHub Pages configuration');
-  
   // Check package.json for repository info
   results.packageJson = checkFileExists('./package.json', 'Checking for package.json');
   
@@ -143,28 +126,6 @@ async function main() {
     } else {
       log(`🟡 Working Directory: Has uncommitted changes`, 'yellow');
     }
-  }
-  
-  // Website status summary
-  log('\n🌐 WEBSITE STATUS', 'bright');
-  log('================', 'bright');
-  
-  if (results.domainDNS.success || results.wwwDomainDNS.success) {
-    log(`🟢 DNS Resolution: Working`, 'green');
-  } else {
-    log(`🔴 DNS Resolution: Failed`, 'red');
-  }
-  
-  if (results.httpTest.success || results.httpsTest.success || results.wwwHttpTest.success || results.wwwHttpsTest.success) {
-    log(`🟢 Website Accessible: Yes`, 'green');
-  } else {
-    log(`🔴 Website Accessible: No`, 'red');
-  }
-  
-  if (results.githubPages.success) {
-    log(`🟢 GitHub Pages: Configured`, 'green');
-  } else {
-    log(`🔴 GitHub Pages: Not configured or error`, 'red');
   }
   
   log(`\n📈 Test Results: ${successCount}/${totalTests} tests passed`, successCount === totalTests ? 'green' : 'yellow');
